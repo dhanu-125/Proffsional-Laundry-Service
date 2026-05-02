@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Laundry Service</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#0b1220;
+color:white;
+}
+
+/* NAV */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+nav a{
+margin:0 15px;
+text-decoration:none;
+color:white;
+}
+
+/* HERO */
+.hero{
+position:relative;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+/* VIDEO */
+.hero-video{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+top:0;
+left:0;
+z-index:1;
+animation:cinemaZoom 20s ease-in-out infinite alternate;
+}
+
+/* OVERLAY */
+.hero-overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0.85));
+z-index:2;
+}
+
+/* CONTENT */
+.hero-content{
+position:relative;
+z-index:3;
+text-align:center;
+opacity:0;
+transform:translateY(40px);
+animation:fadeInHero 1.5s ease forwards;
+}
+
+.hero-title{
+font-size:64px;
+font-weight:700;
+letter-spacing:-1px;
+line-height:1.1;
+}
+
+.hero-sub{
+font-size:18px;
+opacity:0.85;
+margin:15px 0;
+}
+
+.premium-btn{
+padding:14px 30px;
+border-radius:30px;
+background:rgba(255,255,255,0.15);
+color:white;
+border:1px solid rgba(255,255,255,0.3);
+backdrop-filter:blur(15px);
+cursor:pointer;
+transition:0.3s;
+}
+
+.premium-btn:hover{
+background:white;
+color:#0d6efd;
+transform:scale(1.05);
+}
+
+/* 🍎 PRODUCT IMAGE */
+.hero-product{
+position:absolute;
+bottom:5%;
+right:8%;
+z-index:3;
+}
+
+.hero-product img{
+width:260px;
+border-radius:24px;
+box-shadow:0 40px 80px rgba(0,0,0,0.6);
+transition:transform 0.2s ease;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInHero{
+to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes cinemaZoom{
+0%{transform:scale(1);}
+100%{transform:scale(1.1);}
+}
+
+/* SERVICES */
+.services{
+padding:80px 20px;
+background:white;
+color:black;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:15px;
+}
+
+/* STEPS */
+.steps{
+padding:70px;
+background:#f9fafb;
+color:black;
+text-align:center;
+}
+
+/* MODAL */
+#bookingModal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+z-index:999;
+justify-content:center;
+align-items:center;
+}
+
+.input{
+width:100%;
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+footer{
+background:#0f172a;
+padding:20px;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Pro Laundry</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#services">Services</a>
+<a href="#how">How it Works</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+<video autoplay muted loop playsinline class="hero-video">
+<source src="https://cdn.coverr.co/videos/coverr-washing-machine-rotation-5171/1080p.mp4">
+</video>
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content" id="heroContent">
+<h2 class="hero-title"><span id="typing"></span></h2>
+<p class="hero-sub">Pickup • Wash • Fold • Deliver</p>
+<button class="premium-btn" onclick="openModal()">Book Pickup</button>
+</div>
+
+<!-- 🍎 SINGLE IMAGE -->
+<div class="hero-product">
+<img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1">
+</div>
+
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+<h2>Our Services</h2>
+<div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1"><h3>Wash & Fold</h3></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1594041680534-e8c8cdebd659"><h3>Dry Cleaning</h3></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c"><h3>Steam Iron</h3></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"><h3>Shoe Cleaning</h3></div>
+</div>
+</section>
+
+<!-- MODAL -->
+<div id="bookingModal">
+<div style="background:white;color:black;padding:25px;border-radius:15px;width:90%;max-width:400px;">
+<h2>Book Pickup</h2>
+
+<input type="text" id="name" placeholder="Your Name" class="input"><br><br>
+<input type="text" id="phone" placeholder="Phone Number" class="input"><br><br>
+<input type="text" id="address" placeholder="Pickup Address" class="input"><br><br>
+
+<button onclick="getLocation()" class="premium-btn">📍 Use My Location</button>
+<button onclick="openMap()" class="premium-btn">🗺️ Select on Map</button>
+
+<div id="map" style="height:250px;display:none;margin-top:10px;"></div><br>
+
+<select id="service" class="input">
+<option>Wash & Fold</option>
+<option>Dry Cleaning</option>
+<option>Steam Iron</option>
+<option>Shoe Cleaning</option>
+</select><br><br>
+
+<input type="date" id="date" class="input"><br><br>
+
+<button onclick="sendToWhatsApp()" class="premium-btn">Confirm Booking</button>
+<button onclick="closeModal()">Cancel</button>
+</div>
+</div>
+
+<footer>© 2026 Professional Laundry Service</footer>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAP_API_KEY"></script>
+
+<script>
+// typing
+const texts=["Laundry Made Simple","We Wash. You Relax.","Doorstep Laundry Service"];
+let c=0,i=0,txt="",l="";
+function type(){
+if(c===texts.length)c=0;
+txt=texts[c];l=txt.slice(0,++i);
+typing.textContent=l;
+if(l.length===txt.length)setTimeout(erase,1500);
+else setTimeout(type,60);
+}
+function erase(){
+l=txt.slice(0,--i);
+typing.textContent=l;
+if(l.length===0){c++;setTimeout(type,200);}
+else setTimeout(erase,40);
+}
+type();
+
+// parallax
+document.addEventListener("mousemove",e=>{
+let x=(innerWidth/2-e.pageX)/40;
+let y=(innerHeight/2-e.pageY)/40;
+heroContent.style.transform=`translate(${x}px,${y}px)`;
+document.querySelector(".hero-product img").style.transform=`translate(${x*1.5}px,${y*1.5}px)`;
+});
+
+// scroll effect
+window.addEventListener("scroll",()=>{
+let s=scrollY;
+document.querySelector(".hero-video").style.transform=`scale(${1+s/2000})`;
+heroContent.style.opacity=1-s/400;
+});
+
+// map + booking (same as before)
+let map,marker;
+function openModal(){bookingModal.style.display="flex";}
+function closeModal(){bookingModal.style.display="none";}
+function openMap(){
+map.style.display="block";
+if(!mapObj){
+mapObj=new google.maps.Map(map,{center:{lat:12.97,lng:77.59},zoom:13});
+mapObj.addListener("click",e=>placeMarker(e.latLng));
+}}
+function placeMarker(loc){
+if(marker)marker.setPosition(loc);
+else marker=new google.maps.Marker({position:loc,map:mapObj});
+document.getElementById("address").value=`https://maps.google.com?q=${loc.lat()},${loc.lng()}`;
+}
+function getLocation(){
+navigator.geolocation.getCurrentPosition(p=>{
+let loc=new google.maps.LatLng(p.coords.latitude,p.coords.longitude);
+openMap();mapObj.setCenter(loc);placeMarker(loc);
+});
+}
+function sendToWhatsApp(){
+let msg=`🧺 Booking%0AName:${name.value}%0APhone:${phone.value}%0AAddress:${address.value}`;
+window.open(`https://wa.me/8951623328?text=${msg}`);
+}
+</script>
+
+</body>
+</html>
